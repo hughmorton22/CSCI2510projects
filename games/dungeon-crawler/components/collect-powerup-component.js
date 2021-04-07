@@ -6,12 +6,14 @@ export default class CollectPowerupComponent extends Engine.Component {
     }
 
     update() {
-        /*if() {
-
+        /*if() { //colliision with ellipse powerup
+            //update boolean
+            //Show screen text for brief moment ("Wide tears")
         }
 
-        if() {
-
+        if() { //colliision with damage powerup
+            //update boolean
+            //Show screen text for brief moment ("Damage Up")
         }*/
     }
 }
