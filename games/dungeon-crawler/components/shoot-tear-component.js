@@ -2,9 +2,11 @@ import * as Engine from "../../../engine/engine.js"
 import Input from "../../../engine/input.js"
 
 export default class ShootTearComponent extends Engine.Component {
-  constructor(gameObject) {
+  constructor(gameObject, ovalPowerup = false, damagePowerup = false) {
     super(gameObject);
     this.tick = 101;
+    this.ovalPowerup = ovalPowerup;
+    this.damagePowerup = damagePowerup;
   }
   update() {
 
