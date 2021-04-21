@@ -86,6 +86,7 @@ export default class Scene {
     /**
      * Update all the Gamebjects
      */
+    // Add a double for loop to address collisions similar to the concept of input.js
     update() {
         //Use an extended for loop to call update on all gameObjects
         for (let child of this.children) {

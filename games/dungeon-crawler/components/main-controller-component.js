@@ -56,6 +56,11 @@ export default class MainControllerComponent extends Engine.Component {
         if (dPower) {
             if (Engine.EngineGeometry.Collisions.inCollision(this.isaac.getComponent("RectangleGeometryComponent").asGeometry(), dPower.getComponent("RectangleGeometryComponent").asGeometry())) {
                 dPower.destroy();
+                let eye = this.isaac.getGameObject("Eye");
+                let eyeGeoComp = eye.getComponent("DrawGeometryComponent");
+                let eyeShootComp = eye.getComponent("ShootTearComponent");
+                eyeGeoComp.color = "maroon";
+                eyeShootComp.damagePowerup = true;
             }
         }
 
@@ -65,6 +70,7 @@ export default class MainControllerComponent extends Engine.Component {
             }
         }
 
+        // See scene.js update to try and develop for all tears
         let tear = SceneManager.currentScene.getGameObject("Tear");
 
         if (tear) {

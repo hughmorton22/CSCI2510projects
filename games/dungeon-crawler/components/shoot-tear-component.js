@@ -40,6 +40,11 @@ export default class ShootTearComponent extends Engine.Component {
         moveComp.xSpeed = 0;
         moveComp.ySpeed = 1;
       }
+
+      if (this.damagePowerup) {
+        let drawGeoComp = newTear.getComponent("DrawGeometryComponent");
+        drawGeoComp.color = "red";
+      }
       
     }
     else {
