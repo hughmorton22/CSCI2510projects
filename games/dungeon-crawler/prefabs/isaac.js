@@ -15,7 +15,8 @@ export default {
             ]
         },
         {
-            name: "KeyboardMoveComponent"
+            name: "KeyboardMoveComponent",
+            args: [0.8]
         },
         {
             name: "ShootDirectionComponent"

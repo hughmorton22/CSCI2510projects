@@ -34,15 +34,6 @@ export default class MainControllerComponent extends Engine.Component {
 
             this.isaac.transform.position.x = 75 - rectGeoComp.width / 2;
         }
-
-        // if (this.isaacX - rectGeoComp.width / 2 < -75) {
-        //     //Move Right
-        //     this.isaac.transform.position.x = -75 + rectGeoComp.width / 2;
-        // }
-        // if (this.isaacX + rectGeoComp.width / 2 > 75) {
-        //     //Move Left
-        //     this.isaac.transform.position.x = 75 - rectGeoComp.width / 2;
-        // }
         if (this.isaacY - rectGeoComp.height / 2 < -40) {
             //Move up
             this.isaac.transform.position.y = -40 + rectGeoComp.height / 2;
@@ -51,5 +42,39 @@ export default class MainControllerComponent extends Engine.Component {
             //Move Down
             this.isaac.transform.position.y = 40 - rectGeoComp.height / 2;
         }
+
+        let enemy = SceneManager.currentScene.getGameObject("SimpleEnemy");
+        let dPower = SceneManager.currentScene.getGameObject("DamagePowerup");
+        let ePower = SceneManager.currentScene.getGameObject("EllipsePowerup");
+
+        if (enemy) {
+            if (Engine.EngineGeometry.Collisions.inCollision(this.isaac.getComponent("RectangleGeometryComponent").asGeometry(), enemy.getComponent("RectangleGeometryComponent").asGeometry())) {
+                enemy.destroy();
+            }
+        }
+
+        if (dPower) {
+            if (Engine.EngineGeometry.Collisions.inCollision(this.isaac.getComponent("RectangleGeometryComponent").asGeometry(), dPower.getComponent("RectangleGeometryComponent").asGeometry())) {
+                dPower.destroy();
+            }
+        }
+
+        if (ePower) {
+            if (Engine.EngineGeometry.Collisions.inCollision(this.isaac.getComponent("RectangleGeometryComponent").asGeometry(), ePower.getComponent("RectangleGeometryComponent").asGeometry())) {
+                ePower.destroy();
+            }
+        }
+
+        let tear = SceneManager.currentScene.getGameObject("Tear");
+
+        if (tear) {
+            if (enemy) {
+                if (Engine.EngineGeometry.Collisions.inCollision(tear.getComponent("CircleGeometryComponent").asGeometry(), enemy.getComponent("RectangleGeometryComponent").asGeometry())) {
+                    tear.destroy();
+                    enemy.destroy();
+                }
+            }
+        }
+
     }
 }
