@@ -67,6 +67,9 @@ export default class MainControllerComponent extends Engine.Component {
         if (ePower) {
             if (Engine.EngineGeometry.Collisions.inCollision(this.isaac.getComponent("RectangleGeometryComponent").asGeometry(), ePower.getComponent("RectangleGeometryComponent").asGeometry())) {
                 ePower.destroy();
+                let eye = this.isaac.getGameObject("Eye");
+                let eyeShootComp = eye.getComponent("ShootTearComponent");
+                eyeShootComp.ovalPowerup = true;
             }
         }
 

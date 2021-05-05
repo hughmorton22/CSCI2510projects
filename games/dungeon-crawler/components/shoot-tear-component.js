@@ -15,28 +15,40 @@ export default class ShootTearComponent extends Engine.Component {
 
       console.log("Shoot tear")
       this.tick = 0;
+      let newTear;
 
-      let newTear = Engine.SceneManager.currentScene.instantiate({
-        prefabName: "Tear",
-        x: this.gameObject.transform.worldPosition.x,
-        y: this.gameObject.transform.worldPosition.y
-      })
+      if (!this.ovalPowerup) {
+        newTear = Engine.SceneManager.currentScene.instantiate({
+          prefabName: "Tear",
+          x: this.gameObject.transform.worldPosition.x,
+          y: this.gameObject.transform.worldPosition.y
+        })
+      }
+      else {
+        newTear = Engine.SceneManager.currentScene.instantiate({
+          prefabName: "Tear",
+          x: this.gameObject.transform.worldPosition.x,
+          y: this.gameObject.transform.worldPosition.y,
+          sx:0.75,
+          sy:1.5
+        })
+      }
 
       let moveComp = newTear.getComponent("TearMoveComponent");
 
-      if(Input.getKey("ArrowLeft")) {
+      if (Input.getKey("ArrowLeft")) {
         moveComp.xSpeed = -1;
         moveComp.ySpeed = 0;
       }
-      else if(Input.getKey("ArrowRight")) {
+      else if (Input.getKey("ArrowRight")) {
         moveComp.xSpeed = 1;
         moveComp.ySpeed = 0;
       }
-      else if(Input.getKey("ArrowUp")) {
+      else if (Input.getKey("ArrowUp")) {
         moveComp.xSpeed = 0;
         moveComp.ySpeed = -1;
       }
-      else if(Input.getKey("ArrowDown")) {
+      else if (Input.getKey("ArrowDown")) {
         moveComp.xSpeed = 0;
         moveComp.ySpeed = 1;
       }
@@ -45,7 +57,8 @@ export default class ShootTearComponent extends Engine.Component {
         let drawGeoComp = newTear.getComponent("DrawGeometryComponent");
         drawGeoComp.color = "red";
       }
-      
+
+
     }
     else {
       this.tick++;

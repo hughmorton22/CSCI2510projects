@@ -14,7 +14,11 @@ export default class TearCollideComponent extends Engine.Component {
 
         if (this.gameObject) {
             if (enemy) {
-                if (Engine.EngineGeometry.Collisions.inCollision(this.gameObject.getComponent("CircleGeometryComponent").asGeometry(), enemy.getComponent("RectangleGeometryComponent").asGeometry())) {
+                let rectGeo = enemy.getComponent("RectangleGeometryComponent").asGeometry();
+                let circGeo = this.gameObject.getComponent("CircleGeometryComponent").asGeometry();
+                rectGeo.width = rectGeo.width * this.gameObject.transform.localScale.x;
+                rectGeo.height = rectGeo.height * this.gameObject.transform.localScale.y;
+                if (Engine.EngineGeometry.Collisions.inCollision(rectGeo, circGeo)) {
                     this.gameObject.destroy();
                     enemy.destroy();
                 }
