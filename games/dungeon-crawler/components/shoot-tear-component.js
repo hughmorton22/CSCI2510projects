@@ -31,6 +31,7 @@ export default class ShootTearComponent extends Engine.Component {
           y: this.gameObject.transform.worldPosition.y,
           sx:0.75,
           sy:1.5
+          //rotation:this.gameObject.transform.worldRotation.rotation
         })
       }
 
