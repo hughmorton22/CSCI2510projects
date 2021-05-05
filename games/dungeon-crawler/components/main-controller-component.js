@@ -21,7 +21,10 @@ export default class MainControllerComponent extends Engine.Component {
         if (this.isaacX - rectGeoComp.width / 2 < -75) {
             //Move left
             if (SceneManager.currentScene.name == "RightRoomScene") {
-                return SceneManager.changeScene("StartRoomScene");
+                SceneManager.changeScene("StartRoomScene");
+                SceneManager.currentScene.getGameObject("Isaac").transform.position.x = 75 - rectGeoComp.width / 2;
+                SceneManager.currentScene.getGameObject("Isaac").transform.position.y = this.isaacY;
+                return;
             }
 
             this.isaac.transform.position.x = -75 + rectGeoComp.width / 2;
@@ -29,7 +32,10 @@ export default class MainControllerComponent extends Engine.Component {
         if (this.isaacX + rectGeoComp.width / 2 > 75) {
             //Move right
             if (SceneManager.currentScene.name == "StartRoomScene") {
-                return SceneManager.changeScene("RightRoomScene");
+                SceneManager.changeScene("RightRoomScene");
+                SceneManager.currentScene.getGameObject("Isaac").transform.position.x = -75 + rectGeoComp.width / 2;
+                SceneManager.currentScene.getGameObject("Isaac").transform.position.y = this.isaacY;
+                return;
             }
 
             this.isaac.transform.position.x = 75 - rectGeoComp.width / 2;
