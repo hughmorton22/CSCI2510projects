@@ -71,16 +71,16 @@ export default class MainControllerComponent extends Engine.Component {
         }
 
         // See scene.js update to try and develop for all tears
-        let tear = SceneManager.currentScene.getGameObject("Tear");
+        // let tear = SceneManager.currentScene.getGameObject("Tear");
 
-        if (tear) {
-            if (enemy) {
-                if (Engine.EngineGeometry.Collisions.inCollision(tear.getComponent("CircleGeometryComponent").asGeometry(), enemy.getComponent("RectangleGeometryComponent").asGeometry())) {
-                    tear.destroy();
-                    enemy.destroy();
-                }
-            }
-        }
+        // if (tear) {
+        //     if (enemy) {
+        //         if (Engine.EngineGeometry.Collisions.inCollision(tear.getComponent("CircleGeometryComponent").asGeometry(), enemy.getComponent("RectangleGeometryComponent").asGeometry())) {
+        //             tear.destroy();
+        //             enemy.destroy();
+        //         }
+        //     }
+        // }
 
     }
 }

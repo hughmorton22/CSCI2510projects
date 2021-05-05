@@ -19,6 +19,11 @@ export default {
           prefabName: "Ground"
         },
         {
+          prefabName: "SimpleEnemy",
+          x: 40,
+          y: -20
+        },
+        {
             prefabName: "Isaac",
         },
         {

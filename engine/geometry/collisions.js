@@ -16,7 +16,7 @@ export default class {
         return false;
       }
       if (two instanceof Rectangle) {
-        return one.x >= two.x && one.y >= two.y && one.x <= two.x + two.width && one.y <= two.y + two.height;
+        return one.x >= two.x - two.width/2 && one.y >= two.y - two.height/2 && one.x <= two.x + two.width/2 && one.y <= two.y + two.height/2;
       }
     }
     if (one instanceof Circle) {
@@ -29,12 +29,12 @@ export default class {
       }
       if (two instanceof Rectangle) {
         let objects = [];
-        objects.push(new Circle(two.x, two.y, one.radius))
-        objects.push(new Circle(two.x + two.width, two.y, one.radius))
-        objects.push(new Circle(two.x + two.width, two.y + two.height, one.radius))
-        objects.push(new Circle(two.x, two.y + two.height, one.radius))
-        objects.push(new Rectangle(two.x - one.radius, two.y, two.width + one.radius * 2, two.height))
-        objects.push(new Rectangle(two.x, two.y - one.radius, two.width, two.height + one.radius * 2))
+        objects.push(new Circle(two.x + two.width / 2, two.y + two.height / 2, one.radius))
+        objects.push(new Circle(two.x + two.width / 2, two.y - two.height / 2, one.radius))
+        objects.push(new Circle(two.x - two.width / 2, two.y + two.height / 2, one.radius))
+        objects.push(new Circle(two.x - two.width / 2, two.y - two.height / 2, one.radius))
+        objects.push(new Rectangle(two.x, two.y, two.width + one.radius * 2, two.height))
+        objects.push(new Rectangle(two.x, two.y, two.width, two.height + one.radius * 2))
 
         for (let object of objects) {
           if (this.inCollision(new Point(one.x, one.y), object)) {
@@ -52,15 +52,15 @@ export default class {
         return this.inCollision(two, one)
       }
       if (two instanceof Rectangle) {
-        let left1 = one.x;
-        let right1 = one.x + one.width;
-        let bottom1 = one.y;
-        let top1 = one.y + one.height;
+        let left1 = one.x - one.width/2;
+        let right1 = one.x + one.width/2;
+        let bottom1 = one.y - one.height/2;
+        let top1 = one.y + one.height/2;
 
-        let left2 = two.x;
-        let right2 = two.x + two.width;
-        let bottom2 = two.y;
-        let top2 = two.y + two.height;
+        let left2 = two.x - two.width/2;
+        let right2 = two.x + two.width/2;
+        let bottom2 = two.y - two.height/2;
+        let top2 = two.y + two.height/2;
 
         if (left2 > right1) return false;
         if (right2 < left1) return false;
